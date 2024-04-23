@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  SettingView.swift
 //  Tiny-TodoList-iOS
 //
 //  Created by Yuetong Guo on 4/23/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct SettingView: View {
     var body: some View {
         VStack {
             Image(systemName: "globe")
@@ -20,5 +20,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    SettingView()
 }
