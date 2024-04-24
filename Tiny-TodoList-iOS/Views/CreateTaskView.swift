@@ -1,24 +1,25 @@
 //
-//  SettingView.swift
+//  CreateTaskView.swift
 //  Tiny-TodoList-iOS
 //
-//  Created by Yuetong Guo on 4/23/24.
+//  Created by Yuetong Guo on 4/24/24.
 //
 
+import Foundation
 import SwiftUI
 
-struct SettingView: View {
+struct CreateTaskView: View {
     var body: some View {
         VStack {
             Image(systemName: "globe")
                 .imageScale(.large)
                 .foregroundStyle(.tint)
-            Text("Hello, world!")
+            Text("Create Page")
         }
         .padding()
     }
 }
 
 #Preview {
-    SettingView()
+    CreateTaskView()
 }

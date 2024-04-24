@@ -1,5 +1,5 @@
 //
-//  TaskListViewModel.swift
+//  TaskViewModel.swift
 //  Tiny-TodoList-iOS
 //
 //  Created by Yuetong Guo on 4/23/24.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ViewModel: ObservableObject{
+class TaskViewModel: ObservableObject{
     @Published var tasks:[Task] = []
     //    private var taskDataService = TaskDataService()
     
