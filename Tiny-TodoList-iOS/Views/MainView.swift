@@ -25,7 +25,7 @@ struct MainView: View {
                             }
                         ),
                         trailing: NavigationLink(
-                            destination: CreateTaskView(),//viewModel: viewModel
+                            destination: CreateTaskView(viewModel: viewModel),
                             label: {
                                 Image("Icon-Create")
                                     .resizable()

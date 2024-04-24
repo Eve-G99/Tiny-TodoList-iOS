@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 struct EditTaskView: View {
+    @Environment(\.presentationMode) var presentationMode
     @ObservedObject var viewModel: TaskViewModel
     var task: Task
     
@@ -17,27 +18,13 @@ struct EditTaskView: View {
     @State private var showAlert = false
     @State private var alertMessage = ""
     
-    // To format and parse the date correctly
-    private var dateFormatter: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MMMM d, yyyy"
-        return formatter
-    }
-    
     // Initializer to set up the state from the task
     init(task: Task, viewModel: TaskViewModel) {
         self.viewModel = viewModel
         self.task = task
         _taskDescription = State(initialValue: task.taskDescription)
-        _dueDate = State(initialValue: Self.dateFromString(task.dueDate) ?? Date())
+        _dueDate = State(initialValue: Helper.dateFromString(task.dueDate) ?? Date())
     }
-    
-    // Helper function to convert string to Date
-     private static func dateFromString(_ dateString: String) -> Date? {
-         let formatter = DateFormatter()
-         formatter.dateFormat = "MMMM d, yyyy"
-         return formatter.date(from: dateString)
-     }
     
     var body: some View {
             VStack(spacing: 20) {
@@ -63,8 +50,9 @@ struct EditTaskView: View {
                     } else {
                         var updatedTask = task
                         updatedTask.taskDescription = taskDescription
-                        updatedTask.dueDate = dateFormatter.string(from: dueDate)
+                        updatedTask.dueDate = Helper.stringFromDate(dueDate)
                         viewModel.updateTask(updatedTask)
+                        presentationMode.wrappedValue.dismiss()
                     }
                 }) {
                     Text("Save")
@@ -73,6 +61,7 @@ struct EditTaskView: View {
                         .padding()
                         .background(Color.black)
                         .cornerRadius(10)
+                    
                 }
                 Spacer()
             }
@@ -85,6 +74,6 @@ struct EditTaskView: View {
 
     struct EditTaskView_Previews: PreviewProvider {
         static var previews: some View {
-            EditTaskView(task: Task(taskDescription: "Example Task", dueDate: "March 11, 2023"), viewModel: TaskViewModel())
+            EditTaskView(task: Task(taskDescription: "Example Task", dueDate: "March 11, 2027"), viewModel: TaskViewModel())
         }
     }

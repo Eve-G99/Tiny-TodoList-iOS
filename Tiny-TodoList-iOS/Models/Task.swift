@@ -28,16 +28,8 @@ struct Task: Codable, Hashable, Identifiable {
     init(id:String?=nil, taskDescription: String, dueDate: String, completed: Bool = false) {
         self.id = id
         self.taskDescription = taskDescription
-        self.createdDate = Task.currentDateString() //MARK: UTC
+        self.createdDate = Helper.currentDateStringUTC()
         self.dueDate = dueDate
         self.completed = completed
     }
-    
-    //Helper
-    static func currentDateString() -> String {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
-            formatter.timeZone = TimeZone(secondsFromGMT: 0) //MARK: UTC
-            return formatter.string(from: Date())
-        }
 }

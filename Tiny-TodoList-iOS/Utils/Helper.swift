@@ -9,6 +9,25 @@ import Foundation
 
 struct Helper{
     
+    static var dateFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        formatter.timeZone = TimeZone(secondsFromGMT: 0) // UTC
+        return formatter
+    }
+    
+    static func currentDateStringUTC() -> String {
+        return dateFormatter.string(from: Date())
+    }
+    
+    static func stringFromDate(_ date: Date) -> String {
+        return dateFormatter.string(from: date)
+    }
+    
+    static func dateFromString(_ dateString: String) -> Date? {
+        dateFormatter.date(from: dateString)
+    }
+    
     // Utility function to format ISO date strings
     static func formattedDateString(_ isoDateString: String) -> String {
         let parts = isoDateString.split(separator: "T")
