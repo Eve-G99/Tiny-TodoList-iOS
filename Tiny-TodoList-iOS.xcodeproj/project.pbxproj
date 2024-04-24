@@ -8,17 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		B6CFB77A2BD834ED00BF009F /* Tiny_TodoList_iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CFB7792BD834ED00BF009F /* Tiny_TodoList_iOSApp.swift */; };
-		B6CFB77C2BD834ED00BF009F /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CFB77B2BD834ED00BF009F /* MainView.swift */; };
+		B6CFB77C2BD834ED00BF009F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CFB77B2BD834ED00BF009F /* ContentView.swift */; };
 		B6CFB77E2BD834EF00BF009F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6CFB77D2BD834EF00BF009F /* Assets.xcassets */; };
 		B6CFB7812BD834EF00BF009F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6CFB7802BD834EF00BF009F /* Preview Assets.xcassets */; };
-		B6CFB78B2BD834EF00BF009F /* Tiny_TodoList_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CFB78A2BD834EF00BF009F /* Tiny_TodoList_iOSTests.swift */; };
-		B6CFB7952BD834EF00BF009F /* Tiny_TodoList_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CFB7942BD834EF00BF009F /* Tiny_TodoList_iOSUITests.swift */; };
-		B6CFB7972BD834EF00BF009F /* Tiny_TodoList_iOSUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CFB7962BD834EF00BF009F /* Tiny_TodoList_iOSUITestsLaunchTests.swift */; };
 		B6CFB7AC2BD83CBE00BF009F /* TaskItemList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CFB7AB2BD83CBE00BF009F /* TaskItemList.swift */; };
 		B6CFB7AE2BD83CDB00BF009F /* TaskListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CFB7AD2BD83CDB00BF009F /* TaskListViewModel.swift */; };
 		B6CFB7B02BD83E4000BF009F /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CFB7AF2BD83E4000BF009F /* SettingView.swift */; };
 		B6CFB7B22BD83FB100BF009F /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CFB7B12BD83FB100BF009F /* Task.swift */; };
 		B6CFB7B42BD871FF00BF009F /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CFB7B32BD871FF00BF009F /* NetworkService.swift */; };
+		B6CFB7B62BD8A41600BF009F /* TaskDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CFB7B52BD8A41600BF009F /* TaskDataService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,19 +39,17 @@
 /* Begin PBXFileReference section */
 		B6CFB7762BD834ED00BF009F /* Tiny-TodoList-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tiny-TodoList-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6CFB7792BD834ED00BF009F /* Tiny_TodoList_iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tiny_TodoList_iOSApp.swift; sourceTree = "<group>"; };
-		B6CFB77B2BD834ED00BF009F /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		B6CFB77B2BD834ED00BF009F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B6CFB77D2BD834EF00BF009F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B6CFB7802BD834EF00BF009F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B6CFB7862BD834EF00BF009F /* Tiny-TodoList-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tiny-TodoList-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B6CFB78A2BD834EF00BF009F /* Tiny_TodoList_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tiny_TodoList_iOSTests.swift; sourceTree = "<group>"; };
 		B6CFB7902BD834EF00BF009F /* Tiny-TodoList-iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tiny-TodoList-iOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B6CFB7942BD834EF00BF009F /* Tiny_TodoList_iOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tiny_TodoList_iOSUITests.swift; sourceTree = "<group>"; };
-		B6CFB7962BD834EF00BF009F /* Tiny_TodoList_iOSUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tiny_TodoList_iOSUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B6CFB7AB2BD83CBE00BF009F /* TaskItemList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskItemList.swift; sourceTree = "<group>"; };
 		B6CFB7AD2BD83CDB00BF009F /* TaskListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListViewModel.swift; sourceTree = "<group>"; };
 		B6CFB7AF2BD83E4000BF009F /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		B6CFB7B12BD83FB100BF009F /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		B6CFB7B32BD871FF00BF009F /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		B6CFB7B52BD8A41600BF009F /* TaskDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDataService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,8 +81,6 @@
 			isa = PBXGroup;
 			children = (
 				B6CFB7782BD834ED00BF009F /* Tiny-TodoList-iOS */,
-				B6CFB7892BD834EF00BF009F /* Tiny-TodoList-iOSTests */,
-				B6CFB7932BD834EF00BF009F /* Tiny-TodoList-iOSUITests */,
 				B6CFB7772BD834ED00BF009F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -124,23 +118,6 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		B6CFB7892BD834EF00BF009F /* Tiny-TodoList-iOSTests */ = {
-			isa = PBXGroup;
-			children = (
-				B6CFB78A2BD834EF00BF009F /* Tiny_TodoList_iOSTests.swift */,
-			);
-			path = "Tiny-TodoList-iOSTests";
-			sourceTree = "<group>";
-		};
-		B6CFB7932BD834EF00BF009F /* Tiny-TodoList-iOSUITests */ = {
-			isa = PBXGroup;
-			children = (
-				B6CFB7942BD834EF00BF009F /* Tiny_TodoList_iOSUITests.swift */,
-				B6CFB7962BD834EF00BF009F /* Tiny_TodoList_iOSUITestsLaunchTests.swift */,
-			);
-			path = "Tiny-TodoList-iOSUITests";
-			sourceTree = "<group>";
-		};
 		B6CFB7A32BD83B9800BF009F /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -160,7 +137,7 @@
 		B6CFB7A52BD83BA500BF009F /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B6CFB77B2BD834ED00BF009F /* MainView.swift */,
+				B6CFB77B2BD834ED00BF009F /* ContentView.swift */,
 				B6CFB7AB2BD83CBE00BF009F /* TaskItemList.swift */,
 				B6CFB7AF2BD83E4000BF009F /* SettingView.swift */,
 			);
@@ -179,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				B6CFB7B32BD871FF00BF009F /* NetworkService.swift */,
+				B6CFB7B52BD8A41600BF009F /* TaskDataService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -320,12 +298,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B6CFB77C2BD834ED00BF009F /* MainView.swift in Sources */,
+				B6CFB77C2BD834ED00BF009F /* ContentView.swift in Sources */,
 				B6CFB7B02BD83E4000BF009F /* SettingView.swift in Sources */,
 				B6CFB7AE2BD83CDB00BF009F /* TaskListViewModel.swift in Sources */,
 				B6CFB77A2BD834ED00BF009F /* Tiny_TodoList_iOSApp.swift in Sources */,
 				B6CFB7B22BD83FB100BF009F /* Task.swift in Sources */,
 				B6CFB7AC2BD83CBE00BF009F /* TaskItemList.swift in Sources */,
+				B6CFB7B62BD8A41600BF009F /* TaskDataService.swift in Sources */,
 				B6CFB7B42BD871FF00BF009F /* NetworkService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -334,7 +313,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B6CFB78B2BD834EF00BF009F /* Tiny_TodoList_iOSTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,8 +320,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B6CFB7972BD834EF00BF009F /* Tiny_TodoList_iOSUITestsLaunchTests.swift in Sources */,
-				B6CFB7952BD834EF00BF009F /* Tiny_TodoList_iOSUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

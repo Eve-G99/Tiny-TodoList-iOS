@@ -8,11 +8,11 @@
 import Foundation
 
 // Codable: for JSONEncoder and JSONDecoder
-struct Task: Codable, Identifiable {
-    let id: String
+struct Task: Codable, Hashable, Identifiable {
+    var id: String?
     var taskDescription: String
-    var createdDate: Date
-    var dueDate: Date
+    var createdDate: String
+    var dueDate: String
     var completed: Bool
     
     // Coding keys: map the JSON keys from the API to the variable names in the struct
@@ -25,11 +25,19 @@ struct Task: Codable, Identifiable {
     }
     
     // Custom initializer: use to create a new Task before sending it to the server
-    init(taskDescription: String, dueDate: Date, completed: Bool = false) {
-        self.id = UUID().uuidString //MARK: Replace by the backend when a task is created
+    init(id:String?=nil, taskDescription: String, dueDate: String, completed: Bool = false) {
+        self.id = id
         self.taskDescription = taskDescription
-        self.createdDate = Date() //MARK: UTC or Local?
+        self.createdDate = Task.currentDateString() //MARK: UTC
         self.dueDate = dueDate
         self.completed = completed
     }
+    
+    //Helper
+    static func currentDateString() -> String {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+            formatter.timeZone = TimeZone(secondsFromGMT: 0) //MARK: UTC
+            return formatter.string(from: Date())
+        }
 }
