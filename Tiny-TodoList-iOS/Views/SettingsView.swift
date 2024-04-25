@@ -11,50 +11,57 @@ struct SettingsView: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var viewModel: TaskViewModel
     
-    @State private var selectedFilter: String = "all"
-    @State private var selectedSortBy: String = "due"
-    @State private var selectedSortOrder: String = ""
+    // Initialize the state with values from UserDefaults
+    @State private var selectedFilter: String = UserDefaults.standard.string(forKey: "completed") ?? "all"
+    @State private var selectedSortBy: String = UserDefaults.standard.string(forKey: "sort_by") ?? "createdDate"
+    @State private var selectedSortOrder: String = UserDefaults.standard.string(forKey: "sort_order") ?? "" //Asc
     
     var body: some View {
-        NavigationView {
-            Form {
-                Section(header: Text("Filters")) {
-                    Picker("Filter by", selection: $selectedFilter) {
-                        Text("All").tag("all")
-                        Text("Complete").tag("complete")
-                        Text("Incomplete").tag("incomplete")
-                    }
-                    .pickerStyle(SegmentedPickerStyle())
+        Form {
+            Section(header: Text("Filters")) {
+                Picker("Filter by", selection: $selectedFilter) {
+                    Text("All").tag("all")
+                    Text("Complete").tag("complete")
+                    Text("Incomplete").tag("incomplete")
                 }
-                
-                Section(header: Text("Sort By")) {
-                    Picker("Sort by", selection: $selectedSortBy) {
-                        Text("Due Date").tag("dueDate")
-                        Text("Created Date").tag("createdDate")
-                    }
-                    .pickerStyle(SegmentedPickerStyle())
-                }
-                
-                Section(header: Text("Sort Date Direction")) {
-                    Picker("Sort Order", selection: $selectedSortOrder) {
-                        Text("Ascending").tag("")
-                        Text("Descending").tag("-")
-                    }
-                    .pickerStyle(SegmentedPickerStyle())
-                }
-                
-                Section {
-                    Button("Save") {
-                        saveSettings()
-                    }
-                    .frame(maxWidth: .infinity)
-                    .foregroundColor(.white)
-                    .padding()
-                    .background(Color.black)
-                    .cornerRadius(10)
-                }
+                .pickerStyle(SegmentedPickerStyle())
             }
-            .navigationBarTitle("Settings", displayMode: .inline)
+            
+            Section(header: Text("Sort By")) {
+                Picker("Sort by", selection: $selectedSortBy) {
+                    Text("Due Date").tag("dueDate")
+                    Text("Created Date").tag("createdDate")
+                }
+                .pickerStyle(SegmentedPickerStyle())
+            }
+            
+            Section(header: Text("Sort Date Direction")) {
+                Picker("Sort Order", selection: $selectedSortOrder) {
+                    Text("Ascending").tag("")
+                    Text("Descending").tag("-")
+                }
+                .pickerStyle(SegmentedPickerStyle())
+            }
+            
+            Section {
+                Button("Save") {
+                    saveSettings()
+                }
+                .frame(maxWidth:.infinity)
+                .foregroundColor(.white)
+                .padding()
+                .background(Color.black)
+                .cornerRadius(10)
+            }
+        }
+        .navigationBarTitle("Settings")
+        
+        .onAppear {
+            // This ensures that the selected settings are refreshed from UserDefaults
+            // whenever the SettingsView appears.
+            selectedFilter = UserDefaults.standard.string(forKey: "completed") ?? "all"
+            selectedSortBy = UserDefaults.standard.string(forKey: "sort_by") ?? "createdDate"
+            selectedSortOrder = UserDefaults.standard.string(forKey: "sort_order") ?? ""
         }
     }
     
@@ -68,7 +75,8 @@ struct SettingsView: View {
         viewModel.fetchTasksWithSettings()
         
         // Dismiss the settings view
-        presentationMode.wrappedValue.dismiss()    }
+        presentationMode.wrappedValue.dismiss()
+    }
 }
 
 struct SettingsView_Previews: PreviewProvider {
@@ -77,3 +85,21 @@ struct SettingsView_Previews: PreviewProvider {
     }
 }
 
+
+//// Custom ToggleStyle to mimic radio buttons
+//struct RadioToggleStyle: ToggleStyle {
+//    func makeBody(configuration: Self.Configuration) -> some View {
+//        HStack {
+//            configuration.label
+//            
+//            Spacer()
+//            
+//            Image(configuration.isOn ? "Button-Radio" : "Button-Radio-No")
+//                .resizable()
+//                .frame(width: 25, height: 25)
+//                .foregroundColor(configuration.isOn ? .blue : .gray)
+//                .onTapGesture { configuration.isOn.toggle() }
+//        }
+//        .padding(.vertical, 8)
+//    }
+//}

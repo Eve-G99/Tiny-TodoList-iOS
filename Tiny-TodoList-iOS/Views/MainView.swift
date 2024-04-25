@@ -34,11 +34,10 @@ struct MainView: View {
                         )
                     )
             }
-            .onAppear {
+            .onAppear {//MARK: if has setting than setting, otherwise fetch all?
                 viewModel.fetchTasksWithSettings()
             }
-        }
-    }
+        }}
 }
 
 struct MainView_Previews: PreviewProvider {
@@ -46,3 +45,25 @@ struct MainView_Previews: PreviewProvider {
         MainView()
     }
 }
+
+//            VStack{
+//                TaskListView(viewModel: viewModel)
+//            }
+//                                .navigationTitle("Task List")
+//                                .navigationBarTitleDisplayMode(.inline)
+//            .toolbar {
+//                ToolbarItem(placement: .navigationBarLeading) {
+//                    NavigationLink(destination: SettingsView(viewModel: viewModel)) {
+//                        Image("Icon-Setting")
+//                            .resizable()
+//                            .frame(width: 35, height: 35)
+//                    }
+//                }
+//                ToolbarItem(placement: .navigationBarTrailing) {
+//                    NavigationLink(destination: CreateTaskView(viewModel: viewModel)) {
+//                        Image("Icon-Create")
+//                            .resizable()
+//                            .frame(width: 35, height: 35)
+//                    }
+//                }
+//            }

@@ -14,39 +14,72 @@ struct CreateTaskView: View {
     
     @State private var taskDescription: String = ""
     @State private var dueDate: Date = Date()
-        
+    @State private var showAlert = false
+    @State private var alertMessage = ""
+    
     var body: some View {
-        VStack(spacing: 20) {
+        VStack(alignment:.center, spacing: 20) {
             Text("Create")
                 .font(.largeTitle)
             
-            TextField("To-Do Item Name", text: $taskDescription)
+            HStack {
+                Text("To-Do Item Name")
+                Spacer()
+            }
+            
+            TextField("Enter task name", text: $taskDescription)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
             
+            HStack {
+                Text("Select Due Date")
+                Spacer()
+            }
+            
+            HStack {
+                Text(dueDate, style: .date)
+                Spacer()
+                Button(action: {
+                    // DatePicker code would go here, or trigger the date picker
+                }) {
+                    Image("Icon-Calendar")
+                        .resizable()
+                        .frame(width:25, height: 25)
+                }
+            }
             DatePicker(
-                "Select Due Date",
+                "",
                 selection: $dueDate,
                 displayedComponents: .date
-            )
+            ).datePickerStyle(DefaultDatePickerStyle())
             
             Button(action: saveTask) {
                 Text("Save")
                     .foregroundColor(.white)
-                    .frame(maxWidth: .infinity)
+                    .frame(maxWidth: 100)
                     .padding()
                     .background(Color.black)
                     .cornerRadius(10)
             }
+            .padding(.top, 20)
             Spacer()
         }
         .padding()
+        .alert(isPresented: $showAlert) {
+            Alert(title: Text("Notice"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+        }
     }
     
+    
     func saveTask() {
-        let dueDateString = Helper.stringFromDate(dueDate)
-        let newTask = Task(taskDescription: taskDescription, dueDate: dueDateString)
-        viewModel.createTask(newTask)
-        presentationMode.wrappedValue.dismiss()
+        if dueDate < Date(){
+            alertMessage = "Due date must be later than today."
+            showAlert = true
+        }else{
+            let dueDateString = Helper.stringFromDate(dueDate)
+            let newTask = Task(taskDescription: taskDescription, dueDate: dueDateString)
+            viewModel.createTask(newTask)
+            presentationMode.wrappedValue.dismiss()
+        }
     }
 }
 
@@ -56,3 +89,22 @@ struct CreateTaskView_Previews: PreviewProvider {
     }
 }
 
+
+//            HStack {
+//                DatePicker(
+//                    "",
+//                    selection: $dueDate,
+//                    in: Date()...,
+//                    displayedComponents: .date
+//                )
+//                .datePickerStyle(DefaultDatePickerStyle())
+//            }
+//            Spacer()
+//            Image("Icon-Calendar")
+//                .resizable()
+//                .frame(width:25, height: 25)
+//        }
+//            .padding()
+//            .frame(maxWidth: .infinity)
+//            //            .background(Color.gray.opacity(1))
+//            .cornerRadius(5)

@@ -38,10 +38,10 @@ class TaskViewModel: ObservableObject{
                 return
             }
             
-//            // Debugging
-//            if let data = data, let responseString = String(data: data, encoding: .utf8) {
-//                print("Response JSON String: \n\(responseString)")
-//            }
+            //            // Debugging
+            //            if let data = data, let responseString = String(data: data, encoding: .utf8) {
+            //                print("Response JSON String: \n\(responseString)")
+            //            }
             do {
                 let tasks = try JSONDecoder().decode([Task].self, from: data!)
                 DispatchQueue.main.async {
@@ -56,18 +56,23 @@ class TaskViewModel: ObservableObject{
         }
         task.resume()
     }
-
+    
     // Fetch tasks based on saved settings
     func fetchTasksWithSettings() {
         let sortBy = UserDefaults.standard.string(forKey: "sort_by") ?? "createdDate"
-        let sortOrder = UserDefaults.standard.string(forKey: "sort_order") ?? "asc"
+        let sortOrder = UserDefaults.standard.string(forKey: "sort_order") ?? ""
         let completedFilter = UserDefaults.standard.string(forKey: "completed")
         
         let validSortBy = sortBy == "dueDate" ? "dueDate" : "createdDate"
-        let sortOrderPrefix = sortOrder == "asc" ? "" : "-"
+        let sortOrderPrefix = sortOrder == "" ? "" : "-"
         let completedParam: Bool? = (completedFilter == "complete" ? true : (completedFilter == "incomplete" ? false : nil))
         
-        fetchAll(sortBy: sortOrderPrefix + validSortBy, completed: completedParam)
+        //Debug
+        let finalSortBy = sortOrderPrefix + validSortBy
+        print("Final sort parameter: \(finalSortBy)")
+        fetchAll(sortBy: finalSortBy, completed: completedParam)
+        
+        //        fetchAll(sortBy: sortOrderPrefix + validSortBy, completed: completedParam)
     }
     
     // MARK: Did not use this function.
@@ -147,9 +152,9 @@ class TaskViewModel: ObservableObject{
                     print("No data in response: \(error?.localizedDescription ?? "Unknown error")")
                     return
                 }
-//                if let string = String(data: data, encoding: .utf8) {
-//                    print("Received string: \(string)")
-//                }
+                //                if let string = String(data: data, encoding: .utf8) {
+                //                    print("Received string: \(string)")
+                //                }
                 
                 do {
                     let updatedTask = try JSONDecoder().decode(Task.self, from: data)

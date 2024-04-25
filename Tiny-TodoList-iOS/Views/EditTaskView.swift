@@ -17,6 +17,7 @@ struct EditTaskView: View {
     @State private var dueDate: Date
     @State private var showAlert = false
     @State private var alertMessage = ""
+    private let createdDate: Date
     
     // Initializer to set up the state from the task
     init(task: Task, viewModel: TaskViewModel) {
@@ -24,14 +25,21 @@ struct EditTaskView: View {
         self.task = task
         _taskDescription = State(initialValue: task.taskDescription)
         _dueDate = State(initialValue: Helper.dateFromString(task.dueDate) ?? Date())
+        createdDate = Helper.dateFromString(task.createdDate)!
     }
+
     
     var body: some View {
             VStack(spacing: 20) {
                 Text("Edit")
                     .font(.largeTitle)
                 
-                TextField("To-Do Item Name", text: $taskDescription)
+                HStack {
+                    Text("To-Do Item Name")
+                    Spacer()
+                }
+                
+                TextField("Enter task name", text: $taskDescription)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                 
                 DatePicker(
@@ -44,8 +52,8 @@ struct EditTaskView: View {
                     if taskDescription.isEmpty {
                         alertMessage = "Task must have a description."
                         showAlert = true
-                    } else if dueDate < Date() {
-                        alertMessage = "Due date must be in the future."//MARK: Remind Create Date
+                    } else if dueDate < createdDate {
+                        alertMessage = "Due date must be in the future."//MARK: Add Remind Create Date?
                         showAlert = true
                     } else {
                         var updatedTask = task
@@ -57,7 +65,7 @@ struct EditTaskView: View {
                 }) {
                     Text("Save")
                         .foregroundColor(.white)
-                        .frame(maxWidth: .infinity)
+                        .frame(maxWidth: 100)
                         .padding()
                         .background(Color.black)
                         .cornerRadius(10)

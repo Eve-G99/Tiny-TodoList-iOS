@@ -12,10 +12,11 @@ struct Helper{
     static var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
-        formatter.timeZone = TimeZone(secondsFromGMT: 0) // UTC
+        formatter.timeZone = TimeZone(secondsFromGMT: 0) //MARK: UTC for now
         return formatter
     }
     
+    //Get current Date in String
     static func currentDateStringUTC() -> String {
         return dateFormatter.string(from: Date())
     }

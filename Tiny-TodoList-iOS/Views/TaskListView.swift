@@ -20,14 +20,17 @@ struct TaskListView: View {
                         .fill(Color.gray.opacity(0.2))
                     
                     HStack {
-                        // Move the NavigationLink to only wrap the edit icon
-                        NavigationLink(destination: EditTaskView(task:task, viewModel:viewModel)){
-                            Image("Icon-Edit")
-                                .resizable()
-                                .frame(width: 25, height: 25)
-                        }
-                        .buttonStyle(BorderlessButtonStyle())
-                        
+                        Image("Icon-Edit")
+                            .resizable()
+                            .frame(width: 25, height: 25)
+                            .background(
+                                NavigationLink(destination: EditTaskView(task: task, viewModel: viewModel)) {
+                                    EmptyView()
+                                }
+                                    .opacity(0)
+                            )
+                            .frame(width: 25, height: 25, alignment: .leading)
+                            .padding(.trailing, 15)
                         
                         VStack(alignment: .leading) {
                             Text(task.taskDescription).bold()
