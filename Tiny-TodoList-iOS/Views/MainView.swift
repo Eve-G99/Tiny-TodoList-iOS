@@ -17,7 +17,7 @@ struct MainView: View {
                     .navigationTitle("Task List")
                     .navigationBarItems(
                         leading: NavigationLink(
-                            destination: SettingsView(),
+                            destination: SettingsView(viewModel: viewModel),
                             label: {
                                 Image("Icon-Setting")
                                     .resizable()
@@ -35,7 +35,7 @@ struct MainView: View {
                     )
             }
             .onAppear {
-                viewModel.fetchAll()
+                viewModel.fetchTasksWithSettings()
             }
         }
     }
@@ -46,17 +46,3 @@ struct MainView_Previews: PreviewProvider {
         MainView()
     }
 }
-
-//Button("Update") {
-//    //print("Updating task with ID: \(task.id!)")
-//    let updatedDescription = task.taskDescription + "Updated Part"
-//    let updatedTask = Task(id:task.id, taskDescription: updatedDescription, dueDate: task.dueDate, completed: task.completed)
-//    //print(updatedTask)
-//    viewModel.updateTask(updatedTask)
-//}
-
-//Button("Add") {
-//    // Create a completely new task
-//    let newTask = Task(taskDescription: "New New Task", dueDate: Task.currentDateString(), completed: false)
-//    viewModel.createTask(newTask)
-//}
