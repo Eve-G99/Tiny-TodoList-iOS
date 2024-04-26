@@ -37,6 +37,7 @@ struct MainView: View {
                         viewModel.fetchTasksWithSettings()
                     }
             }
+            .padding(.top, 20)
         }
     }
 }

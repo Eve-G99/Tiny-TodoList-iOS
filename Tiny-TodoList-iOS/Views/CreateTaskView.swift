@@ -17,13 +17,6 @@ struct CreateTaskView: View {
     @State private var showAlert = false
     @State private var alertMessage = ""
     
-    private var dueDateText: String {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        formatter.timeStyle = .none
-        return formatter.string(from: dueDate)
-    }
-    
     var body: some View {
         VStack(alignment:.center, spacing: 20) {
             Text("Create")
@@ -55,6 +48,7 @@ struct CreateTaskView: View {
                 )
                 .datePickerStyle(DefaultDatePickerStyle())
                 .labelsHidden()
+                
                 Spacer()
                 
                 Image("Icon-Calendar")
@@ -77,7 +71,7 @@ struct CreateTaskView: View {
             .padding(.top, 20)
             Spacer()
         }
-        .padding(20)
+        .padding(.horizontal, 20)
         .alert(isPresented: $showAlert) {
             Alert(title: Text("Notice"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
         }

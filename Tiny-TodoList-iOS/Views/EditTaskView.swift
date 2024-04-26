@@ -19,14 +19,6 @@ struct EditTaskView: View {
     @State private var alertMessage = ""
     private let createdDate: Date
     
-    // Initialize dueDateText with formatted date string
-    private var dueDateText: String {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        formatter.timeStyle = .none
-        return formatter.string(from: dueDate)
-    }
-    
     // Initializer to set up the state from the task
     init(task: Task, viewModel: TaskViewModel) {
         self.viewModel = viewModel
@@ -68,6 +60,7 @@ struct EditTaskView: View {
                 )
                 .datePickerStyle(DefaultDatePickerStyle())
                 .labelsHidden()
+                
                 Spacer()
                 
                 Image("Icon-Calendar")
@@ -90,7 +83,7 @@ struct EditTaskView: View {
             .padding(.top, 20)
             Spacer()
         }
-        .padding(20)
+        .padding(.horizontal, 20)
         .alert(isPresented: $showAlert) {
             Alert(title: Text("Validation Error"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
         }
