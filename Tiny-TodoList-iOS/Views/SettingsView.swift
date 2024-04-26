@@ -17,6 +17,11 @@ struct SettingsView: View {
     @State private var selectedSortOrder: String = UserDefaults.standard.string(forKey: "sort_order") ?? "" //Asc
     
     var body: some View {
+        
+
+//                Text("Settings")
+//                    .font(.largeTitle)
+//                    .frame(maxWidth: .infinity)
         Form {
             Section(header: Text("Filters")) {
                 Picker("Filter by", selection: $selectedFilter) {
@@ -57,8 +62,7 @@ struct SettingsView: View {
         .navigationBarTitle("Settings")
         
         .onAppear {
-            // This ensures that the selected settings are refreshed from UserDefaults
-            // whenever the SettingsView appears.
+            // This ensures that the selected settings are refreshed from UserDefaults whenever the SettingsView appears.
             selectedFilter = UserDefaults.standard.string(forKey: "completed") ?? "all"
             selectedSortBy = UserDefaults.standard.string(forKey: "sort_by") ?? "createdDate"
             selectedSortOrder = UserDefaults.standard.string(forKey: "sort_order") ?? ""

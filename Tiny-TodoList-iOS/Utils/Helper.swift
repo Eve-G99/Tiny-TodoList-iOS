@@ -28,6 +28,7 @@ struct Helper{
     static func dateFromString(_ dateString: String) -> Date? {
         dateFormatter.date(from: dateString)
     }
+
     
     // Utility function to format ISO date strings
     static func formattedDateString(_ isoDateString: String) -> String {

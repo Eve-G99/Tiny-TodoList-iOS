@@ -13,31 +13,32 @@ struct MainView: View {
     var body: some View {
         NavigationView {
             VStack{
+                HStack {
+                    NavigationLink(destination: SettingsView(viewModel: viewModel)) {
+                        Image("Icon-Setting")
+                            .resizable()
+                            .frame(width: 35, height: 35)
+                    }
+                    Spacer()
+                    Text("Task List")
+                        .font(.largeTitle)
+                        .frame(maxWidth: .infinity)
+                    Spacer()
+                    NavigationLink(destination: CreateTaskView(viewModel: viewModel)) {
+                        Image("Icon-Create")
+                            .resizable()
+                            .frame(width: 25, height: 25)
+                    }
+                }
+                .padding(.horizontal)
+                
                 TaskListView(viewModel: viewModel)
-                    .navigationTitle("Task List")
-                    .navigationBarItems(
-                        leading: NavigationLink(
-                            destination: SettingsView(viewModel: viewModel),
-                            label: {
-                                Image("Icon-Setting")
-                                    .resizable()
-                                    .frame(width: 25, height: 25)
-                            }
-                        ),
-                        trailing: NavigationLink(
-                            destination: CreateTaskView(viewModel: viewModel),
-                            label: {
-                                Image("Icon-Create")
-                                    .resizable()
-                                    .frame(width: 25, height: 25)
-                            }
-                        )
-                    )
+                    .onAppear {
+                        viewModel.fetchTasksWithSettings()
+                    }
             }
-            .onAppear {//MARK: if has setting than setting, otherwise fetch all?
-                viewModel.fetchTasksWithSettings()
-            }
-        }}
+        }
+    }
 }
 
 struct MainView_Previews: PreviewProvider {
@@ -45,25 +46,3 @@ struct MainView_Previews: PreviewProvider {
         MainView()
     }
 }
-
-//            VStack{
-//                TaskListView(viewModel: viewModel)
-//            }
-//                                .navigationTitle("Task List")
-//                                .navigationBarTitleDisplayMode(.inline)
-//            .toolbar {
-//                ToolbarItem(placement: .navigationBarLeading) {
-//                    NavigationLink(destination: SettingsView(viewModel: viewModel)) {
-//                        Image("Icon-Setting")
-//                            .resizable()
-//                            .frame(width: 35, height: 35)
-//                    }
-//                }
-//                ToolbarItem(placement: .navigationBarTrailing) {
-//                    NavigationLink(destination: CreateTaskView(viewModel: viewModel)) {
-//                        Image("Icon-Create")
-//                            .resizable()
-//                            .frame(width: 35, height: 35)
-//                    }
-//                }
-//            }
