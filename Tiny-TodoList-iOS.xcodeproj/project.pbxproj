@@ -15,11 +15,11 @@
 		B6CFB7AE2BD83CDB00BF009F /* TaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CFB7AD2BD83CDB00BF009F /* TaskViewModel.swift */; };
 		B6CFB7B02BD83E4000BF009F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CFB7AF2BD83E4000BF009F /* SettingsView.swift */; };
 		B6CFB7B22BD83FB100BF009F /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CFB7B12BD83FB100BF009F /* Task.swift */; };
-		B6CFB7B42BD871FF00BF009F /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CFB7B32BD871FF00BF009F /* NetworkService.swift */; };
-		B6CFB7B62BD8A41600BF009F /* TaskDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CFB7B52BD8A41600BF009F /* TaskDataService.swift */; };
 		B6CFB7BC2BD9ACC900BF009F /* CreateTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CFB7BB2BD9ACC900BF009F /* CreateTaskView.swift */; };
 		B6CFB7BE2BD9ACD700BF009F /* EditTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CFB7BD2BD9ACD700BF009F /* EditTaskView.swift */; };
 		B6CFB7C02BD9C1D900BF009F /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CFB7BF2BD9C1D900BF009F /* Helper.swift */; };
+		B6CFB7C22BDB55DC00BF009F /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CFB7C12BDB55DC00BF009F /* Logger.swift */; };
+		B6CFB7C42BDB5A8A00BF009F /* NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CFB7C32BDB5A8A00BF009F /* NetworkConfig.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,11 +51,11 @@
 		B6CFB7AD2BD83CDB00BF009F /* TaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewModel.swift; sourceTree = "<group>"; };
 		B6CFB7AF2BD83E4000BF009F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		B6CFB7B12BD83FB100BF009F /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
-		B6CFB7B32BD871FF00BF009F /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
-		B6CFB7B52BD8A41600BF009F /* TaskDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDataService.swift; sourceTree = "<group>"; };
 		B6CFB7BB2BD9ACC900BF009F /* CreateTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskView.swift; sourceTree = "<group>"; };
 		B6CFB7BD2BD9ACD700BF009F /* EditTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskView.swift; sourceTree = "<group>"; };
 		B6CFB7BF2BD9C1D900BF009F /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		B6CFB7C12BDB55DC00BF009F /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		B6CFB7C32BDB5A8A00BF009F /* NetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfig.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,8 +163,7 @@
 		B6CFB7A72BD83BB400BF009F /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				B6CFB7B32BD871FF00BF009F /* NetworkService.swift */,
-				B6CFB7B52BD8A41600BF009F /* TaskDataService.swift */,
+				B6CFB7C32BDB5A8A00BF009F /* NetworkConfig.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -173,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				B6CFB7BF2BD9C1D900BF009F /* Helper.swift */,
+				B6CFB7C12BDB55DC00BF009F /* Logger.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -308,16 +308,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6CFB7C02BD9C1D900BF009F /* Helper.swift in Sources */,
+				B6CFB7C42BDB5A8A00BF009F /* NetworkConfig.swift in Sources */,
 				B6CFB77C2BD834ED00BF009F /* MainView.swift in Sources */,
 				B6CFB7BC2BD9ACC900BF009F /* CreateTaskView.swift in Sources */,
 				B6CFB7B02BD83E4000BF009F /* SettingsView.swift in Sources */,
 				B6CFB7AE2BD83CDB00BF009F /* TaskViewModel.swift in Sources */,
 				B6CFB77A2BD834ED00BF009F /* Tiny_TodoList_iOSApp.swift in Sources */,
 				B6CFB7B22BD83FB100BF009F /* Task.swift in Sources */,
+				B6CFB7C22BDB55DC00BF009F /* Logger.swift in Sources */,
 				B6CFB7AC2BD83CBE00BF009F /* TaskListView.swift in Sources */,
 				B6CFB7BE2BD9ACD700BF009F /* EditTaskView.swift in Sources */,
-				B6CFB7B62BD8A41600BF009F /* TaskDataService.swift in Sources */,
-				B6CFB7B42BD871FF00BF009F /* NetworkService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

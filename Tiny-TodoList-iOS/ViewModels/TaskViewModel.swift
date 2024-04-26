@@ -9,11 +9,10 @@ import Foundation
 
 class TaskViewModel: ObservableObject{
     @Published var tasks:[Task] = []
-    //    private var taskDataService = TaskDataService()
+    let logger = Logger(subsystem: "Tiny-TodoList-iOS", category: "TaskViewModel")
     
     // Fetch all tasks with optional sorting and completion filter
     func fetchAll(sortBy: String? = nil, completed: Bool? = nil) {
-        let urlString = "http://localhost:8080/api/tasks/"
         var queryItems = [URLQueryItem]()
         
         if let sortBy = sortBy {
@@ -23,35 +22,35 @@ class TaskViewModel: ObservableObject{
             queryItems.append(URLQueryItem(name: "completed", value: String(completed)))
         }
         
-        var urlComponents = URLComponents(string: urlString)
+        var urlComponents = URLComponents(string: NetworkConfig.baseURL)
         urlComponents?.queryItems = queryItems.isEmpty ? nil : queryItems
         
         guard let url = urlComponents?.url else {
-            print("Invalid URL for fetching tasks")
+            logger.error("Invalid URL for fetching tasks")
             return
         }
         
         let task = URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+            guard let self = self else { return }
             // Check for fundamental networking error
             if let error = error {
-                print("Network or server error: \(error.localizedDescription)")
+                self.logger.error("Network or server error: \(error.localizedDescription)")
                 return
             }
             
-            //            // Debugging
-            //            if let data = data, let responseString = String(data: data, encoding: .utf8) {
-            //                print("Response JSON String: \n\(responseString)")
-            //            }
+            // Debugging
+            guard let data = data else {
+                self.logger.error("No data received during task fetch")
+                return
+            }
             do {
-                let tasks = try JSONDecoder().decode([Task].self, from: data!)
+                let tasks = try JSONDecoder().decode([Task].self, from: data)
                 DispatchQueue.main.async {
-                    self?.tasks = tasks
+                    self.tasks = tasks
+                    self.logger.debug("Tasks successfully fetched")
                 }
             } catch {
-                print("Decoding error: \(error)")
-                if let data = data, let responseString = String(data: data, encoding: .utf8) {
-                    print("Received string: \(responseString)")
-                }
+                self.logger.error("Decoding error: \(error.localizedDescription)")
             }
         }
         task.resume()
@@ -69,42 +68,16 @@ class TaskViewModel: ObservableObject{
         
         //Debug
         let finalSortBy = sortOrderPrefix + validSortBy
-        print("Final sort parameter: \(finalSortBy)")
-        fetchAll(sortBy: finalSortBy, completed: completedParam)
+        logger.log("Final sort parameter: \(finalSortBy)")
         
-        //        fetchAll(sortBy: sortOrderPrefix + validSortBy, completed: completedParam)
+        fetchAll(sortBy: finalSortBy, completed: completedParam)
     }
     
-    // MARK: Did not use this function.
-    // Fetch one
-    func fetchTask(by id: String) {
-        guard let url = URL(string: "http://localhost:8080/api/tasks/" + id) else {
-            return
-        }
-        
-        let task = URLSession.shared.dataTask(with: url) { [weak self] data, _, error in
-            guard let data = data, error == nil else {
-                print("Network or server error: \(error!.localizedDescription)")
-                return
-            }
-            
-            do {
-                let task = try JSONDecoder().decode(Task.self, from: data)
-                DispatchQueue.main.async {
-                    if let index = self?.tasks.firstIndex(where: { $0.id == id }) {
-                        self?.tasks[index] = task
-                    }
-                }
-            } catch {
-                print("Decoding error: \(error)")
-            }
-        }
-        task.resume()
-    }
     
     // Create
     func createTask(_ task: Task) {
-        guard let url = URL(string: "http://localhost:8080/api/tasks/"), let body = try? JSONEncoder().encode(task) else {
+        guard let url = URL(string: NetworkConfig.baseURL), let body = try? JSONEncoder().encode(task) else {
+            logger.error("Failed to encode task or bad URL for creating task.")
             return
         }
         
@@ -115,7 +88,7 @@ class TaskViewModel: ObservableObject{
         
         let task = URLSession.shared.dataTask(with: request) { [weak self] data, _, error in
             guard let data = data, error == nil else {
-                print("Network or server error: \(error!.localizedDescription)")
+                self?.logger.error("Network or server error: \(error!.localizedDescription)")
                 return
             }
             
@@ -123,22 +96,24 @@ class TaskViewModel: ObservableObject{
                 let newTask = try JSONDecoder().decode(Task.self, from: data)
                 DispatchQueue.main.async {
                     self?.tasks.append(newTask)
+                    self?.logger.debug("New Task: \(newTask.id ?? "Error ID")")
                 }
             } catch {
-                print("Decoding error: \(error)")
+                self?.logger.error("Decoding error during create: \(error.localizedDescription)")
             }
         }
         task.resume()
     }
     
+    
     //Update
     func updateTask(_ task: Task) {
-        guard let taskID = task.id, let url = URL(string: "http://localhost:8080/api/tasks/" + taskID) else {
-            //print("Bad URL or nil task ID")
+        guard let taskID = task.id, let url = URL(string: NetworkConfig.baseURL + taskID) else {
+            logger.error("Bad Url or nil task ID")
             return
         }
         
-        //print("URL: \(url)")
+        logger.debug("Update at Url: \(url)")
         
         do {
             let body = try JSONEncoder().encode(task)
@@ -148,34 +123,44 @@ class TaskViewModel: ObservableObject{
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             
             let task = URLSession.shared.dataTask(with: request) { [weak self] data, _, error in
-                guard let data = data else {
-                    print("No data in response: \(error?.localizedDescription ?? "Unknown error")")
+                guard let self = self else { return }
+                
+                if let error = error {
+                    self.logger.error("Network or server error during task update: \(error.localizedDescription)")
                     return
                 }
-                //                if let string = String(data: data, encoding: .utf8) {
-                //                    print("Received string: \(string)")
-                //                }
+                
+                guard let data = data else {
+                    self.logger.error("No data in response during task update.")
+                    return
+                }
+                
+                if let responseString = String(data: data, encoding: .utf8) {
+                    self.logger.debug("Received response string: \(responseString)")
+                }
                 
                 do {
                     let updatedTask = try JSONDecoder().decode(Task.self, from: data)
                     DispatchQueue.main.async {
-                        if let index = self?.tasks.firstIndex(where: {$0.id == updatedTask.id}) {
-                            self?.tasks[index] = updatedTask
+                        if let index = self.tasks.firstIndex(where: {$0.id == updatedTask.id}) {
+                            self.tasks[index] = updatedTask
+                            self.logger.debug("Task successfully updated.")
                         }
                     }
                 } catch {
-                    print("Decoding error: \(error)")
+                    self.logger.error("Decoding error during Update: \(error)")
                 }
             }
             task.resume()
         } catch {
-            print("Error encoding task: \(error)")
+            logger.error("Error encoding task: \(error)")
         }
     }
     
     // Delete
     func deleteTask(by id: String) {
-        guard let url = URL(string: "http://localhost:8080/api/tasks/" + id) else {
+        guard let url = URL(string: NetworkConfig.baseURL + id) else {
+            logger.error("Invalid URL during delete: \(id)")
             return
         }
         
@@ -184,12 +169,13 @@ class TaskViewModel: ObservableObject{
         
         let task = URLSession.shared.dataTask(with: request) { [weak self] _, _, error in
             guard error == nil else {
-                print("Network or server error: \(error!.localizedDescription)")
+                self?.logger.error("Network or server error: \(error!.localizedDescription)")
                 return
             }
             
             DispatchQueue.main.async {
                 self?.tasks.removeAll(where: { $0.id == id })
+                self?.logger.debug("Task successfully deleted: \(id)")
             }
         }
         task.resume()
