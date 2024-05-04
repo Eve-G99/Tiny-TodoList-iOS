@@ -16,6 +16,7 @@ struct CreateTaskView: View {
     @State private var dueDate: Date = Date()
     @State private var showAlert = false
     @State private var alertMessage = ""
+    @State private var isDatePickerShown = false
     
     var body: some View {
         VStack(alignment:.center, spacing: 20) {
@@ -55,10 +56,27 @@ struct CreateTaskView: View {
                     .resizable()
                     .frame(width: 25, height: 25)
                     .padding(.trailing, 10)
+                    .onTapGesture {
+                        self.isDatePickerShown.toggle()
+                    }
             }
             .frame(maxWidth: .infinity, minHeight: 44)
             .background(Color.gray)
             .cornerRadius(5)
+            .onTapGesture {
+                self.isDatePickerShown.toggle()
+            }
+            
+            if isDatePickerShown {
+                DatePicker(
+                    "",
+                    selection: $dueDate,
+                    displayedComponents: .date
+                )
+                .datePickerStyle(GraphicalDatePickerStyle())
+                .labelsHidden()
+                .frame(maxHeight: 400)
+            }
             
             Button(action: saveTask) {
                 Text("Save")

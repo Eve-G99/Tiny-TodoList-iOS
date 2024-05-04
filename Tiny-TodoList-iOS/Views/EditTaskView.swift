@@ -17,6 +17,7 @@ struct EditTaskView: View {
     @State private var dueDate: Date
     @State private var showAlert = false
     @State private var alertMessage = ""
+    @State private var isDatePickerShown = false
     private let createdDate: Date
     
     // Initializer to set up the state from the task
@@ -24,7 +25,7 @@ struct EditTaskView: View {
         self.viewModel = viewModel
         self.task = task
         _taskDescription = State(initialValue: task.taskDescription)
-        _dueDate = State(initialValue: Helper.dateFromString(task.dueDate) ?? Date())
+        _dueDate = State(initialValue: Helper.dateFromString(task.dueDate)!)
         createdDate = Helper.dateFromString(task.createdDate)!
     }
     
@@ -67,10 +68,27 @@ struct EditTaskView: View {
                     .resizable()
                     .frame(width: 25, height: 25)
                     .padding(.trailing, 10)
+                    .onTapGesture {
+                        self.isDatePickerShown.toggle()
+                    }
             }
             .frame(maxWidth: .infinity, minHeight: 44)
             .background(Color.gray)
             .cornerRadius(5)
+            .onTapGesture {
+                self.isDatePickerShown.toggle()
+            }
+            
+            if isDatePickerShown {
+                DatePicker(
+                    "",
+                    selection: $dueDate,
+                    displayedComponents: .date
+                )
+                .datePickerStyle(GraphicalDatePickerStyle())
+                .labelsHidden()
+                .frame(maxHeight: 400)
+            }
             
             Button(action: updateTask) {
                 Text("Save")
@@ -108,8 +126,8 @@ struct EditTaskView: View {
 }
 
 
-    struct EditTaskView_Previews: PreviewProvider {
-        static var previews: some View {
-            EditTaskView(task: Task(taskDescription: "Example Task", dueDate: "March 11, 2027"), viewModel: TaskViewModel())
-        }
+struct EditTaskView_Previews: PreviewProvider {
+    static var previews: some View {
+        EditTaskView(task: Task(taskDescription: "Example Task", dueDate: "March 11, 2027"), viewModel: TaskViewModel())
     }
+}

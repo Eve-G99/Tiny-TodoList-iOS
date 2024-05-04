@@ -57,7 +57,7 @@ struct TaskListView: View {
                     }
                     .padding()
                 }
-                // .listRowInsets(EdgeInsets()) // Uncomment this if you want to remove the default padding
+                // .listRowInsets(EdgeInsets()) //Remove the default padding
             }
             .onDelete { indexSet in
                 indexSet.forEach { index in

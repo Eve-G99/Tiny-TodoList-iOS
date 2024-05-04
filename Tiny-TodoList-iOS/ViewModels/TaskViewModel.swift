@@ -10,7 +10,7 @@ import Foundation
 class TaskViewModel: ObservableObject{
     @Published var tasks:[Task] = []
     let logger = Logger(subsystem: "Tiny-TodoList-iOS", category: "TaskViewModel")
-    
+        
     // Fetch all tasks with optional sorting and completion filter
     func fetchAll(sortBy: String? = nil, completed: Bool? = nil) {
         var queryItems = [URLQueryItem]()
@@ -43,6 +43,7 @@ class TaskViewModel: ObservableObject{
                 self.logger.error("No data received during task fetch")
                 return
             }
+            
             do {
                 let tasks = try JSONDecoder().decode([Task].self, from: data)
                 DispatchQueue.main.async {

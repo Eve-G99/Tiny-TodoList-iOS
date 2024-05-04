@@ -11,7 +11,7 @@ struct Helper {
     
     static var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
         formatter.timeZone = TimeZone(secondsFromGMT: 0) //MARK: UTC for now
         return formatter
     }
@@ -26,7 +26,7 @@ struct Helper {
     }
     
     static func dateFromString(_ dateString: String) -> Date? {
-        dateFormatter.date(from: dateString)
+        return dateFormatter.date(from: dateString)
     }
     
     // Utility function to format ISO date strings

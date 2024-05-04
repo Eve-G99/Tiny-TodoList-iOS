@@ -17,7 +17,7 @@ struct Task: Codable, Hashable, Identifiable {
     
     // Coding keys: map the JSON keys from the API to the variable names in the struct
     enum CodingKeys: String, CodingKey {
-        case id = "_id"
+        case id
         case taskDescription
         case createdDate
         case dueDate
