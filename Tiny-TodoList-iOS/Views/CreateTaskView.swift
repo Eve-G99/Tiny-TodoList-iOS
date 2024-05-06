@@ -13,7 +13,7 @@ struct CreateTaskView: View {
     @ObservedObject var viewModel: TaskViewModel
     
     @State private var taskDescription: String = ""
-    @State private var dueDate: Date = Date()
+    @State private var dueDate: Date? = nil
     @State private var showAlert = false
     @State private var alertMessage = ""
     @State private var isDatePickerShown = false
@@ -28,11 +28,11 @@ struct CreateTaskView: View {
                 Spacer()
             }
             
-            TextField("", text: $taskDescription)
+            TextField("Please input Todo description", text: $taskDescription)
                 .padding(.vertical, 10)
                 .padding(.horizontal)
                 .frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
-                .background(Color.gray)
+                .background(Color.gray.opacity(0.4))
                 .cornerRadius(5)
                 .foregroundColor(Color.black)
             
@@ -42,13 +42,11 @@ struct CreateTaskView: View {
             }
             
             HStack {
-                DatePicker(
-                    "",
-                    selection: $dueDate,
-                    displayedComponents: .date
-                )
-                .datePickerStyle(DefaultDatePickerStyle())
-                .labelsHidden()
+                Text(dueDate != nil ? "\(dueDate!, style: .date)" : "No date selected")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.leading, 10)
+                    .foregroundColor(dueDate != nil ? .black : .gray)  // Lighter text color when no date is selected
+                    .opacity(dueDate != nil ? 1 : 0.6)
                 
                 Spacer()
                 
@@ -61,7 +59,7 @@ struct CreateTaskView: View {
                     }
             }
             .frame(maxWidth: .infinity, minHeight: 44)
-            .background(Color.gray)
+            .background(Color.gray.opacity(0.4))
             .cornerRadius(5)
             .onTapGesture {
                 self.isDatePickerShown.toggle()
@@ -70,7 +68,10 @@ struct CreateTaskView: View {
             if isDatePickerShown {
                 DatePicker(
                     "",
-                    selection: $dueDate,
+                    selection: Binding<Date>(
+                        get: { self.dueDate ?? Date() },
+                        set: { self.dueDate = $0 }
+                    ),
                     displayedComponents: .date
                 )
                 .datePickerStyle(GraphicalDatePickerStyle())
@@ -98,15 +99,17 @@ struct CreateTaskView: View {
     
     func saveTask() {
         //Error Handling
-        if dueDate < Date(){
+        guard let dueDate = dueDate, dueDate >= Date() else {
             alertMessage = "Due date must be later than today."
             showAlert = true
-        }else{
-            let dueDateString = Helper.stringFromDate(dueDate)
-            let newTask = Task(taskDescription: taskDescription, dueDate: dueDateString)
-            viewModel.createTask(newTask)
-            presentationMode.wrappedValue.dismiss()
+            return
         }
+        // dueDate is Local date from DatePicker, store in database as UTC String
+        let dueDateString = Helper.localDateToUTCString(dueDate)
+        let newTask = Task(taskDescription: taskDescription, dueDate: dueDateString)
+        viewModel.createTask(newTask)
+        viewModel.fetchTasksWithSettings()
+        presentationMode.wrappedValue.dismiss()
     }
 }
 

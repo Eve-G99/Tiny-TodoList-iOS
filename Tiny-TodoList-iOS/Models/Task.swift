@@ -28,7 +28,7 @@ struct Task: Codable, Hashable, Identifiable {
     init(id:String?=nil, taskDescription: String, dueDate: String, completed: Bool = false) {
         self.id = id
         self.taskDescription = taskDescription
-        self.createdDate = Helper.currentDateStringUTC()
+        self.createdDate = Helper.localDateToUTCString(Date())
         self.dueDate = dueDate
         self.completed = completed
     }

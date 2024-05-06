@@ -17,7 +17,7 @@ struct TaskListView: View {
                 ZStack {
                     // Adding a background to each cell
                     RoundedRectangle(cornerRadius: 10)
-                        .fill(Color.gray.opacity(0.2))
+                        .fill(Color.gray.opacity(0.4))
                     
                     HStack {
                         Image("Icon-Edit")

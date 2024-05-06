@@ -23,31 +23,12 @@
 		B6CFB7C62BDBCA6900BF009F /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CFB7C52BDBCA6900BF009F /* Enum.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		B6CFB7872BD834EF00BF009F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B6CFB76E2BD834ED00BF009F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B6CFB7752BD834ED00BF009F;
-			remoteInfo = "Tiny-TodoList-iOS";
-		};
-		B6CFB7912BD834EF00BF009F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B6CFB76E2BD834ED00BF009F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B6CFB7752BD834ED00BF009F;
-			remoteInfo = "Tiny-TodoList-iOS";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		B6CFB7762BD834ED00BF009F /* Tiny-TodoList-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tiny-TodoList-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6CFB7792BD834ED00BF009F /* Tiny_TodoList_iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tiny_TodoList_iOSApp.swift; sourceTree = "<group>"; };
 		B6CFB77B2BD834ED00BF009F /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		B6CFB77D2BD834EF00BF009F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B6CFB7802BD834EF00BF009F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		B6CFB7862BD834EF00BF009F /* Tiny-TodoList-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tiny-TodoList-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B6CFB7902BD834EF00BF009F /* Tiny-TodoList-iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tiny-TodoList-iOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6CFB7AB2BD83CBE00BF009F /* TaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListView.swift; sourceTree = "<group>"; };
 		B6CFB7AD2BD83CDB00BF009F /* TaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewModel.swift; sourceTree = "<group>"; };
 		B6CFB7AF2BD83E4000BF009F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -62,20 +43,6 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		B6CFB7732BD834ED00BF009F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B6CFB7832BD834EF00BF009F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B6CFB78D2BD834EF00BF009F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -97,8 +64,6 @@
 			isa = PBXGroup;
 			children = (
 				B6CFB7762BD834ED00BF009F /* Tiny-TodoList-iOS.app */,
-				B6CFB7862BD834EF00BF009F /* Tiny-TodoList-iOSTests.xctest */,
-				B6CFB7902BD834EF00BF009F /* Tiny-TodoList-iOSUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -200,42 +165,6 @@
 			productReference = B6CFB7762BD834ED00BF009F /* Tiny-TodoList-iOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		B6CFB7852BD834EF00BF009F /* Tiny-TodoList-iOSTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B6CFB79D2BD834EF00BF009F /* Build configuration list for PBXNativeTarget "Tiny-TodoList-iOSTests" */;
-			buildPhases = (
-				B6CFB7822BD834EF00BF009F /* Sources */,
-				B6CFB7832BD834EF00BF009F /* Frameworks */,
-				B6CFB7842BD834EF00BF009F /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				B6CFB7882BD834EF00BF009F /* PBXTargetDependency */,
-			);
-			name = "Tiny-TodoList-iOSTests";
-			productName = "Tiny-TodoList-iOSTests";
-			productReference = B6CFB7862BD834EF00BF009F /* Tiny-TodoList-iOSTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		B6CFB78F2BD834EF00BF009F /* Tiny-TodoList-iOSUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B6CFB7A02BD834EF00BF009F /* Build configuration list for PBXNativeTarget "Tiny-TodoList-iOSUITests" */;
-			buildPhases = (
-				B6CFB78C2BD834EF00BF009F /* Sources */,
-				B6CFB78D2BD834EF00BF009F /* Frameworks */,
-				B6CFB78E2BD834EF00BF009F /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				B6CFB7922BD834EF00BF009F /* PBXTargetDependency */,
-			);
-			name = "Tiny-TodoList-iOSUITests";
-			productName = "Tiny-TodoList-iOSUITests";
-			productReference = B6CFB7902BD834EF00BF009F /* Tiny-TodoList-iOSUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -248,14 +177,6 @@
 				TargetAttributes = {
 					B6CFB7752BD834ED00BF009F = {
 						CreatedOnToolsVersion = 15.2;
-					};
-					B6CFB7852BD834EF00BF009F = {
-						CreatedOnToolsVersion = 15.2;
-						TestTargetID = B6CFB7752BD834ED00BF009F;
-					};
-					B6CFB78F2BD834EF00BF009F = {
-						CreatedOnToolsVersion = 15.2;
-						TestTargetID = B6CFB7752BD834ED00BF009F;
 					};
 				};
 			};
@@ -273,8 +194,6 @@
 			projectRoot = "";
 			targets = (
 				B6CFB7752BD834ED00BF009F /* Tiny-TodoList-iOS */,
-				B6CFB7852BD834EF00BF009F /* Tiny-TodoList-iOSTests */,
-				B6CFB78F2BD834EF00BF009F /* Tiny-TodoList-iOSUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -286,20 +205,6 @@
 			files = (
 				B6CFB7812BD834EF00BF009F /* Preview Assets.xcassets in Resources */,
 				B6CFB77E2BD834EF00BF009F /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B6CFB7842BD834EF00BF009F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B6CFB78E2BD834EF00BF009F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,34 +230,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B6CFB7822BD834EF00BF009F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B6CFB78C2BD834EF00BF009F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		B6CFB7882BD834EF00BF009F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B6CFB7752BD834ED00BF009F /* Tiny-TodoList-iOS */;
-			targetProxy = B6CFB7872BD834EF00BF009F /* PBXContainerItemProxy */;
-		};
-		B6CFB7922BD834EF00BF009F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B6CFB7752BD834ED00BF009F /* Tiny-TodoList-iOS */;
-			targetProxy = B6CFB7912BD834EF00BF009F /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		B6CFB7982BD834EF00BF009F /* Debug */ = {
@@ -479,15 +357,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Tiny-TodoList-iOS/Preview Content\"";
 				DEVELOPMENT_TEAM = B9QMV7SMHA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Tiny-TodoList-iOS/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -508,15 +388,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Tiny-TodoList-iOS/Preview Content\"";
 				DEVELOPMENT_TEAM = B9QMV7SMHA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Tiny-TodoList-iOS/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -529,82 +411,6 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		B6CFB79E2BD834EF00BF009F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = B9QMV7SMHA;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Eve.Tiny-TodoList-iOSTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tiny-TodoList-iOS.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Tiny-TodoList-iOS";
-			};
-			name = Debug;
-		};
-		B6CFB79F2BD834EF00BF009F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = B9QMV7SMHA;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Eve.Tiny-TodoList-iOSTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tiny-TodoList-iOS.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Tiny-TodoList-iOS";
-			};
-			name = Release;
-		};
-		B6CFB7A12BD834EF00BF009F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = B9QMV7SMHA;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Eve.Tiny-TodoList-iOSUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Tiny-TodoList-iOS";
-			};
-			name = Debug;
-		};
-		B6CFB7A22BD834EF00BF009F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = B9QMV7SMHA;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Eve.Tiny-TodoList-iOSUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Tiny-TodoList-iOS";
 			};
 			name = Release;
 		};
@@ -625,24 +431,6 @@
 			buildConfigurations = (
 				B6CFB79B2BD834EF00BF009F /* Debug */,
 				B6CFB79C2BD834EF00BF009F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		B6CFB79D2BD834EF00BF009F /* Build configuration list for PBXNativeTarget "Tiny-TodoList-iOSTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				B6CFB79E2BD834EF00BF009F /* Debug */,
-				B6CFB79F2BD834EF00BF009F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		B6CFB7A02BD834EF00BF009F /* Build configuration list for PBXNativeTarget "Tiny-TodoList-iOSUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				B6CFB7A12BD834EF00BF009F /* Debug */,
-				B6CFB7A22BD834EF00BF009F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

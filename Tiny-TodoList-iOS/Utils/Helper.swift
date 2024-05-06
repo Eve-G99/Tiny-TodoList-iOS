@@ -8,39 +8,38 @@
 import Foundation
 
 struct Helper {
-    
-    static var dateFormatter: DateFormatter {
+        
+    static var UTCdateFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-        formatter.timeZone = TimeZone(secondsFromGMT: 0) //MARK: UTC for now
+        formatter.timeZone = TimeZone(abbreviation: "UTC")
         return formatter
     }
-    
-    //Get current Date in String
-    static func currentDateStringUTC() -> String {
-        return dateFormatter.string(from: Date())
+            
+    static func localDateToUTCString(_ date: Date) -> String {
+        return UTCdateFormatter.string(from: date)
     }
     
-    static func stringFromDate(_ date: Date) -> String {
-        return dateFormatter.string(from: date)
+    // UTC string to Local date
+    static func UTCStringToLocalDate(_ dateString: String) -> Date? {
+        // UTC string to UTC date
+        if let date = UTCdateFormatter.date(from: dateString) {
+            print("here")
+            let timeZoneOffset = TimeInterval(TimeZone.current.secondsFromGMT(for: date))
+            let localDate = date.addingTimeInterval(timeZoneOffset)
+            return localDate
+            
+        }
+        return nil
     }
     
-    static func dateFromString(_ dateString: String) -> Date? {
-        return dateFormatter.date(from: dateString)
-    }
-    
-    // Utility function to format ISO date strings
+    // Utility function to format ISO date strings from UTC string to local string
     static func formattedDateString(_ isoDateString: String) -> String {
-        let parts = isoDateString.split(separator: "T")
-        let dateParts = parts[0].split(separator: "-")
-        guard dateParts.count == 3 else { return isoDateString }
-        
-        let year = dateParts[0]
-        let month = Int(dateParts[1]) ?? 0
-        let day = Int(dateParts[2]) ?? 0
-        
-        let monthName = DateFormatter().monthSymbols[month - 1]
-        return "\(monthName) \(day), \(year)"
+        let localDate = UTCStringToLocalDate(isoDateString)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM dd, yyyy" // "MMM" for abbreviated month, "dd" for day, "yyyy" for year
+        let dateString = dateFormatter.string(from: localDate!)
+        return dateString
     }
 }
 

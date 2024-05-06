@@ -25,8 +25,9 @@ struct EditTaskView: View {
         self.viewModel = viewModel
         self.task = task
         _taskDescription = State(initialValue: task.taskDescription)
-        _dueDate = State(initialValue: Helper.dateFromString(task.dueDate)!)
-        createdDate = Helper.dateFromString(task.createdDate)!
+        // task.dueDate is UTC string from Database, convert to local time for DatePicker
+        _dueDate = State(initialValue: Helper.UTCStringToLocalDate(task.dueDate)!)
+        createdDate = Helper.UTCStringToLocalDate(task.createdDate)!
     }
     
     
@@ -44,7 +45,7 @@ struct EditTaskView: View {
                 .padding(.vertical, 10)
                 .padding(.horizontal)
                 .frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
-                .background(Color.gray)
+                .background(Color.gray.opacity(0.4))
                 .cornerRadius(5)
                 .foregroundColor(Color.black)
             
@@ -54,13 +55,9 @@ struct EditTaskView: View {
             }
             
             HStack {
-                DatePicker(
-                    "",
-                    selection: $dueDate,
-                    displayedComponents: .date
-                )
-                .datePickerStyle(DefaultDatePickerStyle())
-                .labelsHidden()
+                Text(dueDate, style: .date)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.leading, 10)
                 
                 Spacer()
                 
@@ -73,7 +70,7 @@ struct EditTaskView: View {
                     }
             }
             .frame(maxWidth: .infinity, minHeight: 44)
-            .background(Color.gray)
+            .background(Color.gray.opacity(0.4))
             .cornerRadius(5)
             .onTapGesture {
                 self.isDatePickerShown.toggle()
@@ -118,8 +115,10 @@ struct EditTaskView: View {
         } else {
             var updatedTask = task
             updatedTask.taskDescription = taskDescription
-            updatedTask.dueDate = Helper.stringFromDate(dueDate)
+            // dueDate is Local date from DatePicker, store in database as UTC String
+            updatedTask.dueDate = Helper.localDateToUTCString(dueDate)
             viewModel.updateTask(updatedTask)
+            viewModel.fetchTasksWithSettings()
             presentationMode.wrappedValue.dismiss()
         }
     }
